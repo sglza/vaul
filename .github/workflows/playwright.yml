@@ -7,6 +7,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +18,6 @@ jobs:
       - run: npm install -g pnpm@8.8.0
       - run: pnpm install
       - run: pnpm build
-      - run: sudo npx playwright install --with-deps
       - run: pnpm test || exit 1
       - uses: actions/upload-artifact@v4
         if: always()
