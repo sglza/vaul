@@ -16,6 +16,7 @@ jobs:
       - run: npm install -g pnpm@8.8.0
       - run: pnpm install
       - run: pnpm build
+      - run: sudo apt-get update && sudo apt-get install -y libasound2 libffi-dev libx264-dev
       - run: npx playwright install
       - run: pnpm test || exit 1
       - uses: actions/upload-artifact@v4
